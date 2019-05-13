@@ -1,0 +1,4 @@
+/workspaces/TypeProviderTests/sample/JsonLoader.Sample
+/workspaces/TypeProviderTests/sample/JsonLoader.Sample
+/workspaces/TypeProviderTests/sample/JsonLoader.Sample
+/workspaces/TypeProviderTests/sample/JsonLoader.Sample

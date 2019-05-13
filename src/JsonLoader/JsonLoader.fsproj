@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <Target Name="BeforeBuildTarget" BeforeTargets="Build">
+    <MSBuild Projects="..\JsonLoader.DesignTime\JsonLoader.DesignTime.fsproj" Targets="Restore" />
+    <MSBuild Projects="..\JsonLoader.DesignTime\JsonLoader.DesignTime.fsproj" Targets="Build" Properties="Configuration=$(Configuration);TargetFramework=netstandard2.0" />
+    <MSBuild Projects="..\JsonLoader.DesignTime\JsonLoader.DesignTime.fsproj" Targets="Build" Properties="Configuration=$(Configuration);TargetFramework=netcoreapp2.2" />
+  </Target>
+
+  <Target Name="AfterBuildTarget" AfterTargets="Build">
+    <Copy SourceFiles="..\JsonLoader.DesignTime\bin\$(Configuration)\netstandard2.0\JsonLoader.DesignTime.dll" DestinationFolder="$(OutputPath)\typeproviders\fsharp41\netstandard2.0" />
+    <Message Text="OutputPath is $(OutputPath)" Importance="High" />
+  </Target>
+
+</Project>
